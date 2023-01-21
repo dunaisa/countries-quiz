@@ -40,6 +40,7 @@
   font-weight: 400;
   font-size: 16px;
   text-align: center;
+  color: #000000;
 }
 
 .container__form-country-name {
@@ -48,6 +49,7 @@
   font-weight: 500;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
+  color: #000000;
 }
 
 .container__form-btn {
@@ -71,6 +73,7 @@
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 16px;
+  color: #000000;
 }
 
 .container__form-btn_type_active {
