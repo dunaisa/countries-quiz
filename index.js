@@ -51,7 +51,6 @@ const defaultList = [
 
 // ];
 
-// '#C1BDDB'
 const colors = ['#6B4E71', '#3A4454', '#53687E', '#4281A4', '#48A9A6', '#C1666B', '#D4B483'];
 
 const animation = document.getElementById('animation');
