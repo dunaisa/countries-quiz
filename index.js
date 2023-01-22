@@ -75,8 +75,10 @@ const restartGameBtn = document.querySelector('.container__result-btn');
 const progressBar = document.querySelector('.circular-progress');
 const progressBarPercent = document.querySelector('.circular-progress__percent');
 
-
-
+const zoomBtnPlus = document.querySelector('.zoom__btn_type_plus');
+const zoomBtnMinus = document.querySelector('.zoom__btn_type_minus');
+const map = document.querySelector('.map');
+// map.style.transform = map.style.WebkitTransform = map.style.MsTransform = 'scale(1.5)';
 
 for (i = 0; countriesClassName.length > i; i++) {
   countriesClassName[i].addEventListener('click', function () {
@@ -219,3 +221,166 @@ restartGameBtn.addEventListener('click', function () {
   history.go();
 });
 
+// zoomBtnPlus.addEventListener('click', function () {
+//   let step = 1
+//   map.style.scale = step + 2
+// });
+
+// zoomBtnMinus.addEventListener('click', function () {
+//   map.style.scale = 1
+// });
+
+// countriesClassName.forEach((contry) => {
+//   function addOnWheel(elem, handler) {
+//     if (elem.addEventListener) {
+//       if ('onwheel' in document) {
+//         // IE9+, FF17+
+//         elem.addEventListener("wheel", handler);
+//       } else if ('onmousewheel' in document) {
+//         // устаревший вариант события
+//         elem.addEventListener("mousewheel", handler);
+//       } else {
+//         // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
+//         elem.addEventListener("MozMousePixelScroll", handler);
+//       }
+//     } else { // IE8-
+//       contry.attachEvent("onmousewheel", handler);
+//     }
+//   }
+
+//   var scale = 1;
+
+//   addOnWheel(contry, function (e) {
+
+//     var delta = e.deltaY || e.detail || e.wheelDelta;
+
+//     // отмасштабируем при помощи CSS
+//     if (delta > 0) scale += 0.05;
+//     else scale -= 0.05;
+
+//     contry.style.transform = contry.style.WebkitTransform = contry.style.MsTransform = 'scale(' + scale + ')';
+
+//     // отменим прокрутку
+//     e.preventDefault();
+//   });
+// })
+
+
+function addOnWheel(map, handler) {
+  if (map.addEventListener) {
+    if ('onwheel' in document) {
+      // IE9+, FF17+
+      map.addEventListener("wheel", handler);
+    } else if ('onmousewheel' in document) {
+      // устаревший вариант события
+      map.addEventListener("mousewheel", handler);
+    } else {
+      // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
+      map.addEventListener("MozMousePixelScroll", handler);
+    }
+  } else { // IE8-
+    map.attachEvent("onmousewheel", handler);
+  }
+}
+
+var scale = 1;
+
+addOnWheel(map, function (e) {
+
+  var delta = e.deltaY || e.detail || e.wheelDelta;
+
+  // отмасштабируем при помощи CSS
+  if (delta > 0) scale += 0.05;
+  else scale -= 0.05;
+
+  map.style.transform = map.style.WebkitTransform = map.style.MsTransform = 'scale(' + scale + ')';
+
+  // отменим прокрутку
+  e.preventDefault();
+});
+
+const ele = document.querySelector('.container');
+
+// ele.scrollTop = 100;
+// ele.scrollLeft = 150;
+
+// let pos = { top: 0, left: 0, x: 0, y: 0 };
+
+// const mouseDownHandler = function (e) {
+
+//   ele.style.cursor = 'grabbing';
+//   ele.style.userSelect = 'none';
+
+//   pos = {
+//     // The current scroll
+//     left: ele.scrollLeft,
+//     top: ele.scrollTop,
+//     // Get the current mouse position
+//     x: e.clientX,
+//     y: e.clientY,
+//   };
+
+//   const mouseMoveHandler = function (e) {
+//     // How far the mouse has been moved
+//     const dx = e.clientX - pos.x;
+//     const dy = e.clientY - pos.y;
+
+//     // Scroll the element
+//     ele.scrollTop = pos.top - dy;
+//     ele.scrollLeft = pos.left - dx;
+//   };
+
+//   const mouseUpHandler = function () {
+//     document.removeEventListener('mousemove', mouseMoveHandler);
+//     document.removeEventListener('mouseup', mouseUpHandler);
+
+//     ele.style.cursor = 'grab';
+//     ele.style.removeProperty('user-select');
+//   };
+
+//   document.addEventListener('mousemove', mouseMoveHandler);
+//   document.addEventListener('mouseup', mouseUpHandler);
+// };
+
+const container = document.querySelector('.container');
+let startY;
+let startX;
+let scrollLeft;
+let scrollTop;
+let isDown;
+
+map.addEventListener('mousedown', e => mouseIsDown(e));
+map.addEventListener('mouseup', e => mouseUp(e))
+map.addEventListener('mouseleave', e => mouseLeave(e));
+map.addEventListener('mousemove', e => mouseMove(e));
+
+function mouseIsDown(e) {
+  console.log('ok')
+  isDown = true;
+  startY = e.pageY - map.offsetTop;
+  startX = e.pageX - map.offsetLeft;
+  scrollLeft = map.scrollLeft;
+  scrollTop = map.scrollTop;
+}
+function mouseUp(e) {
+  console.log('ok')
+  isDown = false;
+}
+function mouseLeave(e) {
+  isDown = false;
+}
+function mouseMove(e) {
+  if (isDown) {
+    e.preventDefault();
+    //Move vertcally
+    const y = e.pageY - map.offsetTop;
+    const walkY = y - startY;
+    map.scrollTop = scrollTop - walkY;
+
+    //Move Horizontally
+    const x = e.pageX - map.offsetLeft;
+    const walkX = x - startX;
+    map.scrollLeft = scrollLeft - walkX;
+
+  }
+}

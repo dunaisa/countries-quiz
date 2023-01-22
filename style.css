@@ -6,6 +6,16 @@
   padding: 20px;
   /* overflow-y: hidden;
   cursor: grab; */
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+
+  /* cursor: move;
+  /* fallback if grab cursor is unsupported */
+  /*cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+  */
 }
 
 .container {
@@ -210,6 +220,7 @@
   fill: #D5CFE1;
   /* filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, .7)); */
   filter: drop-shadow(5px 3px 5px rgba(0, 0, 0, .7));
+  transition: 0.8s;
 
 }
 
@@ -382,4 +393,29 @@
   text-transform: uppercase;
   color: #e85c4a;
   z-index: 3;
+}
+
+.zoom {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: transparent;
+  top: 200px;
+  left: 20px;
+  z-index: 10;
+}
+
+.zoom__btn {
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  border: 0.5px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
 }
