@@ -12,9 +12,9 @@
 
 В проекте использовались следующие технические инструменты:
 
-- Наименование классов по БЭМ
+- CSS (аименование классов по БЭМ)
 - Flex
 - ванильный JS
 - работа с svg
 
-[## Ссылка на проект GITHUBPAGES](https://dunaisa.github.io/countries-quiz/)
+[Ссылка на проект GITHUBPAGES](https://dunaisa.github.io/countries-quiz/)
