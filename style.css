@@ -4,11 +4,12 @@
   min-width: 320px;
   background-color: #FFFFFF;
   padding: 20px;
+  overflow: auto;
   /* overflow-y: hidden;
   cursor: grab; */
 
-  overflow-y: hidden;
-  overflow-x: hidden;
+  /* overflow-y: hidden;
+  overflow-x: hidden; */
 
   /* cursor: move;
   /* fallback if grab cursor is unsupported */
@@ -16,6 +17,8 @@
   cursor: -moz-grab;
   cursor: -webkit-grab;
   */
+
+  box-sizing: border-box;
 }
 
 .container {
@@ -214,7 +217,7 @@
 }
 
 .map {
-  width: 1024px;
+  max-width: 1024px;
   height: 100%;
   /* fill="#ACB0BD" */
   fill: #D5CFE1;
@@ -395,7 +398,7 @@
   z-index: 3;
 }
 
-.zoom {
+/* .zoom {
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -418,4 +421,48 @@
   border: 0.5px solid #000000;
   border-radius: 5px;
   cursor: pointer;
+} */
+
+/* @media screen and (max-width: 1152px) {
+  .page {
+    padding: 45px 150px 60px 150px;
+  }
+} */
+
+@media screen and (max-width: 1024px) {
+  .map {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .map {
+    max-width: 768px;
+  }
+
+  .container__form {
+    width: 220px;
+    height: 20px;
+    padding: 10px;
+  }
+
+  .container__form-text {
+    font-size: 14px;
+  }
+
+  .container__form-country-name {
+    font-size: 14px;
+  }
+
+  .container__form-btn {
+    height: 30px;
+    width: 30px;
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .map {
+    max-width: 425px;
+  }
 }

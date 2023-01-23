@@ -14,11 +14,13 @@
 
 <body class="page">
 
-  <div class="container">
+  <div class="container__form container__form_type_hidden">
+    <p class="container__form-text">Where is <span class="container__form-country-name"></span>?</p>
+  </div>
 
-    <div class="container__form container__form_type_hidden">
-      <p class="container__form-text">Where is <span class="container__form-country-name"></span>?</p>
-    </div>
+  <button class="container__form-btn container__form-btn_type_hidden">Ок</button>
+
+  <div class="container">
 
     <div class="container__start-wrapper">
 
@@ -54,8 +56,6 @@
 
     </div>
 
-    <button class="container__form-btn container__form-btn_type_hidden">Ок</button>
-
     <div class="container__result-wrapper container__result-wrapper_type_hidden">
       <div class="container__result ">
         <p class="container__result-text">You answered <span class="container__result-percent"></span> questions
@@ -68,10 +68,10 @@
       </div>
     </div>
 
-    <div class="zoom">
+    <!-- <div class="zoom">
       <button class="zoom__btn zoom__btn_type_plus">+</button>
       <button class="zoom__btn zoom__btn_type_minus">-</button>
-    </div>
+    </div> -->
 
     <svg version="1.2" viewbox="0 0 1000 684" xmlns="http://www.w3.org/2000/svg" class="map">
 
