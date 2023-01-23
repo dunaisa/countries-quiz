@@ -40,17 +40,6 @@ const defaultList = [
   'Spain'
 ];
 
-// const defaultList = [
-//   'Albania',
-//   'Andorra',
-//   'Austria',
-//   'Sweden',
-//   'Ukraine',
-//   'France',
-//   'Spain'
-
-// ];
-
 const colors = ['#6B4E71', '#3A4454', '#53687E', '#4281A4', '#48A9A6', '#C1666B', '#D4B483'];
 
 const animation = document.getElementById('animation');
@@ -115,15 +104,6 @@ currentCountryIndex = 0;
 function handleStartGame() {
   countryName.textContent = newDefaultArray[currentCountryIndex];
 };
-
-// function setNextCountry() {
-//   if (currentCountryIndex === 39) {
-//     showResult();
-//   } else {
-//     currentCountryIndex = currentCountryIndex + 1;
-//     renderQuestion(currentCountryIndex);
-//   }
-// };
 
 function setNextCountry() {
   console.log(currentCountryIndex)
@@ -221,51 +201,6 @@ restartGameBtn.addEventListener('click', function () {
   history.go();
 });
 
-// zoomBtnPlus.addEventListener('click', function () {
-//   let step = 1
-//   map.style.scale = step + 2
-// });
-
-// zoomBtnMinus.addEventListener('click', function () {
-//   map.style.scale = 1
-// });
-
-// countriesClassName.forEach((contry) => {
-//   function addOnWheel(elem, handler) {
-//     if (elem.addEventListener) {
-//       if ('onwheel' in document) {
-//         // IE9+, FF17+
-//         elem.addEventListener("wheel", handler);
-//       } else if ('onmousewheel' in document) {
-//         // устаревший вариант события
-//         elem.addEventListener("mousewheel", handler);
-//       } else {
-//         // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
-//         elem.addEventListener("MozMousePixelScroll", handler);
-//       }
-//     } else { // IE8-
-//       contry.attachEvent("onmousewheel", handler);
-//     }
-//   }
-
-//   var scale = 1;
-
-//   addOnWheel(contry, function (e) {
-
-//     var delta = e.deltaY || e.detail || e.wheelDelta;
-
-//     // отмасштабируем при помощи CSS
-//     if (delta > 0) scale += 0.05;
-//     else scale -= 0.05;
-
-//     contry.style.transform = contry.style.WebkitTransform = contry.style.MsTransform = 'scale(' + scale + ')';
-
-//     // отменим прокрутку
-//     e.preventDefault();
-//   });
-// })
-
-
 function addOnWheel(map, handler) {
   if (map.addEventListener) {
     if ('onwheel' in document) {
@@ -283,11 +218,11 @@ function addOnWheel(map, handler) {
   }
 }
 
-var scale = 1;
+let scale = 1;
 
 addOnWheel(map, function (e) {
 
-  var delta = e.deltaY || e.detail || e.wheelDelta;
+  let delta = e.deltaY || e.detail || e.wheelDelta;
 
   // отмасштабируем при помощи CSS
   if (delta > 0) scale += 0.05;
@@ -298,49 +233,6 @@ addOnWheel(map, function (e) {
   // отменим прокрутку
   e.preventDefault();
 });
-
-const ele = document.querySelector('.container');
-
-// ele.scrollTop = 100;
-// ele.scrollLeft = 150;
-
-// let pos = { top: 0, left: 0, x: 0, y: 0 };
-
-// const mouseDownHandler = function (e) {
-
-//   ele.style.cursor = 'grabbing';
-//   ele.style.userSelect = 'none';
-
-//   pos = {
-//     // The current scroll
-//     left: ele.scrollLeft,
-//     top: ele.scrollTop,
-//     // Get the current mouse position
-//     x: e.clientX,
-//     y: e.clientY,
-//   };
-
-//   const mouseMoveHandler = function (e) {
-//     // How far the mouse has been moved
-//     const dx = e.clientX - pos.x;
-//     const dy = e.clientY - pos.y;
-
-//     // Scroll the element
-//     ele.scrollTop = pos.top - dy;
-//     ele.scrollLeft = pos.left - dx;
-//   };
-
-//   const mouseUpHandler = function () {
-//     document.removeEventListener('mousemove', mouseMoveHandler);
-//     document.removeEventListener('mouseup', mouseUpHandler);
-
-//     ele.style.cursor = 'grab';
-//     ele.style.removeProperty('user-select');
-//   };
-
-//   document.addEventListener('mousemove', mouseMoveHandler);
-//   document.addEventListener('mouseup', mouseUpHandler);
-// };
 
 const container = document.querySelector('.container');
 let startY;
