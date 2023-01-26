@@ -201,78 +201,78 @@ restartGameBtn.addEventListener('click', function () {
   history.go();
 });
 
-function addOnWheel(map, handler) {
-  if (map.addEventListener) {
-    if ('onwheel' in document) {
-      // IE9+, FF17+
-      map.addEventListener("wheel", handler);
-    } else if ('onmousewheel' in document) {
-      // устаревший вариант события
-      map.addEventListener("mousewheel", handler);
-    } else {
-      // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
-      map.addEventListener("MozMousePixelScroll", handler);
-    }
-  } else { // IE8-
-    map.attachEvent("onmousewheel", handler);
-  }
-}
+// function addOnWheel(map, handler) {
+//   if (map.addEventListener) {
+//     if ('onwheel' in document) {
+//       // IE9+, FF17+
+//       map.addEventListener("wheel", handler);
+//     } else if ('onmousewheel' in document) {
+//       // устаревший вариант события
+//       map.addEventListener("mousewheel", handler);
+//     } else {
+//       // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
+//       map.addEventListener("MozMousePixelScroll", handler);
+//     }
+//   } else { // IE8-
+//     map.attachEvent("onmousewheel", handler);
+//   }
+// }
 
-let scale = 1;
+// let scale = 1;
 
-addOnWheel(map, function (e) {
+// addOnWheel(map, function (e) {
 
-  let delta = e.deltaY || e.detail || e.wheelDelta;
+//   let delta = e.deltaY || e.detail || e.wheelDelta;
 
-  // отмасштабируем при помощи CSS
-  if (delta > 0) scale += 0.05;
-  else scale -= 0.05;
+//   // отмасштабируем при помощи CSS
+//   if (delta > 0) scale += 0.05;
+//   else scale -= 0.05;
 
-  map.style.transform = map.style.WebkitTransform = map.style.MsTransform = 'scale(' + scale + ')';
+//   map.style.transform = map.style.WebkitTransform = map.style.MsTransform = 'scale(' + scale + ')';
 
-  // отменим прокрутку
-  e.preventDefault();
-});
+//   // отменим прокрутку
+//   e.preventDefault();
+// });
 
-const container = document.querySelector('.container');
-let startY;
-let startX;
-let scrollLeft;
-let scrollTop;
-let isDown;
+// const container = document.querySelector('.container');
+// let startY;
+// let startX;
+// let scrollLeft;
+// let scrollTop;
+// let isDown;
 
-map.addEventListener('mousedown', e => mouseIsDown(e));
-map.addEventListener('mouseup', e => mouseUp(e))
-map.addEventListener('mouseleave', e => mouseLeave(e));
-map.addEventListener('mousemove', e => mouseMove(e));
+// map.addEventListener('mousedown', e => mouseIsDown(e));
+// map.addEventListener('mouseup', e => mouseUp(e))
+// map.addEventListener('mouseleave', e => mouseLeave(e));
+// map.addEventListener('mousemove', e => mouseMove(e));
 
-function mouseIsDown(e) {
-  console.log('ok')
-  isDown = true;
-  startY = e.pageY - map.offsetTop;
-  startX = e.pageX - map.offsetLeft;
-  scrollLeft = map.scrollLeft;
-  scrollTop = map.scrollTop;
-}
-function mouseUp(e) {
-  console.log('ok')
-  isDown = false;
-}
-function mouseLeave(e) {
-  isDown = false;
-}
-function mouseMove(e) {
-  if (isDown) {
-    e.preventDefault();
-    //Move vertcally
-    const y = e.pageY - map.offsetTop;
-    const walkY = y - startY;
-    map.scrollTop = scrollTop - walkY;
+// function mouseIsDown(e) {
+//   console.log('ok')
+//   isDown = true;
+//   startY = e.pageY - map.offsetTop;
+//   startX = e.pageX - map.offsetLeft;
+//   scrollLeft = map.scrollLeft;
+//   scrollTop = map.scrollTop;
+// }
+// function mouseUp(e) {
+//   console.log('ok')
+//   isDown = false;
+// }
+// function mouseLeave(e) {
+//   isDown = false;
+// }
+// function mouseMove(e) {
+//   if (isDown) {
+//     e.preventDefault();
+//     //Move vertcally
+//     const y = e.pageY - map.offsetTop;
+//     const walkY = y - startY;
+//     map.scrollTop = scrollTop - walkY;
 
-    //Move Horizontally
-    const x = e.pageX - map.offsetLeft;
-    const walkX = x - startX;
-    map.scrollLeft = scrollLeft - walkX;
+//     //Move Horizontally
+//     const x = e.pageX - map.offsetLeft;
+//     const walkX = x - startX;
+//     map.scrollLeft = scrollLeft - walkX;
 
-  }
-}
+//   }
+// }
